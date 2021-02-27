@@ -12,6 +12,7 @@
     <link href="app.css" rel="stylesheet">
     <!-- Link to app.js with defer till HTML render -->
     <script defer src="app.js"></script>
+    <script src="dinosaur.js"></script>
 </head>
 <body>
     <header>
@@ -35,7 +36,7 @@
                 <option>Omnivor</option>
                 <option>Carnivor</option>
             </select>
-            <div id="btn">Compare Me!</div>
+            <div id="btn" onclick="fetchData()">Compare Me!</div>
         </div>
     </form>
     <!-- .grid to attach tiles to -->
