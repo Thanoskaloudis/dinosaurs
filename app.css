@@ -149,6 +149,11 @@ input {
     box-sizing: border-box;
 }
 
+.fade-out {
+    opacity: 0;
+    transition: opacity .5s ease-in;
+}
+
 select {
     display: block;
 }
