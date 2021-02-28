@@ -12,7 +12,6 @@
     <link href="app.css" rel="stylesheet">
     <!-- Link to app.js with defer till HTML render -->
     <script defer src="app.js"></script>
-    <script src="dinosaur.js"></script>
 </head>
 <body>
     <header>
@@ -26,17 +25,17 @@
             <p>Name:</p>
             <input id="name" class="form-field__full" type="name" name="name">
             <p>Height</p>
-            <label>Feet: <input id="feet" class="form-field__short" type="number" name="feet"></label>
-            <label>inches: <input id="inches" class="form-field__short" type="number" name="inches"></label>
+            <label>M: <input id="meters" class="form-field__short" type="number" name="meters"></label>
+            <label>CM: <input id="centimeters" class="form-field__short" type="number" name="centimeters"></label>
             <p>Weight:</p>
-            <label><input id="weight" class="form-field__full" type="number" name="weight">lbs</label>
+            <label><input id="weight" class="form-field__full" type="number" name="weight">kg</label>
             <p>Diet:</p>
             <select id="diet" class="form-field__full" name="diet">
                 <option>Herbavor</option>
                 <option>Omnivor</option>
                 <option>Carnivor</option>
             </select>
-            <div id="btn" onclick="fetchData()">Compare Me!</div>
+            <div id="btn" onclick="createHuman()">Compare Me!</div>
         </div>
     </form>
     <!-- .grid to attach tiles to -->
