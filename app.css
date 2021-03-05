@@ -123,11 +123,13 @@ p {
 
 /* Form Styles */
 .form-container {
-    background: #eee;
+    background: #d8ddd09e;
     padding: 1.3em;
     text-align: left;
     max-width: 400px;
     margin: 0 auto;
+    border-radius: 1rem;
+    box-shadow: 2px 3px 3px #4141414d;
 }
 
 form p {
@@ -137,10 +139,13 @@ form p {
     font-family: 'Oswald', sans-serif;
 }
 
-input {
-    padding: 0.7em;
-    background: #fff;
-    border: 0;
+input{
+    height: 40px;
+    width: 300px;
+    border-radius: 1vh;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    border: none;
 }
 
 .form-field__short {
@@ -149,8 +154,18 @@ input {
     box-sizing: border-box;
 }
 
-.form-field__full {
+.form-field__name {
     width: 100%;
+    box-sizing: border-box;
+}
+
+.form-field__weight {
+    width: 95%;
+    box-sizing: border-box;
+}
+
+.form-field__diet {
+    width: 40%;
     box-sizing: border-box;
 }
 
@@ -161,19 +176,30 @@ input {
 
 select {
     display: block;
+    font-size: 20px;
+    border-radius: 1vh;
+    height: 40px;
+    margin-bottom: 20px;
+    font-family: 'Oswald', sans-serif;
 }
 
 #btn {
-    display: inline-block;
-    background: #ccc;
-    padding: 0.8em;
-    margin: 1.2em auto;
-    transition: ease 0.3s all;
+    color: #2d2d2de0;
+    background: #3f766494;
+    font-size: 25px;
+    border-radius: 1vh;
+    border: none;
+    box-shadow: 2px 3px 3px #4141414d;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+    width: 50%;
+    margin: auto;
 }
 
 #btn:hover {
-    background: #777;
-    color: #fff;
+    background: #3f766494;
+    color: rgba(255, 255, 255, 0.815);
     cursor: pointer;
 }
 

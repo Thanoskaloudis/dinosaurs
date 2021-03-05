@@ -68,7 +68,9 @@ function compare() {
 
   isValidForm && hideForm();
 
-  createTiles(dinosArray, human);
+  setTimeout(() => {
+    createTiles(dinosArray, human);
+  }, 600);
 }
 
 function createTiles(dinosArray, human) {
@@ -86,7 +88,12 @@ function createTiles(dinosArray, human) {
 
     if (dinoIndex == 3) {
       // place human tile in the middle
-      let humanTileDiv = getGridTile(human.species, human.image, null, human.name);
+      let humanTileDiv = getGridTile(
+        human.species,
+        human.image,
+        null,
+        human.name
+      );
       document.getElementById("grid").appendChild(humanTileDiv);
     }
   }
@@ -135,6 +142,9 @@ function getRandomFact(dinoIndex) {
 function hideForm() {
   const element = document.getElementById("dino-compare");
   element.classList.add("fade-out");
+  setTimeout(() => {
+    element.style.display = "none";
+  }, 500);
 }
 
 function validateForm() {
