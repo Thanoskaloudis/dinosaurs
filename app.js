@@ -5,14 +5,8 @@ function Dinosaur(dinoData) {
   this.diet = dinoData.diet;
   this.place = dinoData.place;
   this.time = dinoData.time;
-  this.fact = dinoData.fact;
-}
-
-function Human(hunamData) {
-  this.name = hunamData.name;
-  this.weight = hunamData.weight;
-  this.height = hunamData.headers;
-  this.diet = hunamData.diet;
+  this.fact = [dinoData.fact];
+  this.image = "images/" + dinoData.species.toLowerCase() + ".png";
 }
 
 let dinosArray = [];
@@ -53,50 +47,91 @@ function getHumanData() {
   const diet = document.querySelector("#diet").value;
 
   return {
+    species: "Human",
     name: name,
     weight: weight,
     height: height,
     diet: diet,
+    image: "images/human.png",
   };
 }
 
 function compare() {
   const isValidForm = validateForm();
   const human = getHumanData();
+
   dinosArray.forEach((dino) => {
     compareWeight(human.name, human.weight, dino.weight, dino.species);
     compareHeight(human.name, human.height, dino.height, dino.species);
     compareDiet(human.diet, dino.diet);
   });
+
   isValidForm && hideForm();
+
+  createTiles(dinosArray, human);
+}
+
+function createTiles(dinosArray, human) {
+  for (let dinoIndex in dinosArray) {
+    let dino = dinosArray[dinoIndex];
+    let fact = getRandomFact(dinoIndex);
+
+    if (dino.weight < 1) {
+      fact = "All birds are dinosaurs."; // if the weight is less, ie it is definitely a bird
+    }
+
+    let gridTileDiv = getGridTile(dino.species, dino.image, fact);
+
+    document.getElementById("grid").appendChild(gridTileDiv);
+
+    if (dinoIndex == 3) {
+      // place human tile in the middle
+      let humanTileDiv = getGridTile(human.species, human.image, null, human.name);
+      document.getElementById("grid").appendChild(humanTileDiv);
+    }
+  }
 }
 
 function compareWeight(name, humanWeight, dinoWeight, species) {
   const percentage = ((humanWeight * 100) / dinoWeight).toFixed(3);
   const approximate = humanWeight > dinoWeight ? "more" : "less";
-  console.log(
-    name + " has " + percentage + "% " + approximate + " weight than " + species
-  );
+  const fact =
+    name +
+    " has " +
+    percentage +
+    "% " +
+    approximate +
+    " weight than " +
+    species;
+  addFact(fact, species);
 }
 
 function compareHeight(name, humanHeight, dinoHeight, species) {
   const percentage = ((humanHeight * 100) / dinoHeight).toFixed(3);
   const approximate = humanHeight > dinoHeight ? "taller" : "sorter";
-  console.log(
-    name + " is " + percentage + "% " + approximate + " than " + species
+  const fact =
+    name + " is " + percentage + "% " + approximate + " than " + species;
+  addFact(fact, species);
+}
+
+function compareDiet(humanDiet, dinoDiet, species) {
+  const isSameDiet = humanDiet.toLowerCase() == dinoDiet;
+  const fact = isSameDiet ? "Same diet!" : "Not the same diet";
+  addFact(fact, species);
+}
+
+function addFact(fact, species) {
+  dinosArray.forEach(
+    (dino) => dino.species === species && dino.fact.push(fact)
   );
 }
 
-function compareDiet(humanDiet, dinoDiet) {
-  const isSameDiet = humanDiet.toLowerCase() == dinoDiet;
-  console.log(isSameDiet);
+function getRandomFact(dinoIndex) {
+  let index =
+    Math.floor(Math.random() * 10) % dinosArray[dinoIndex].fact.length;
+  return dinosArray[dinoIndex].fact[index];
 }
 
-// Generate Tiles for each Dino in Array
-
-// Add tiles to DOM
-
-// Remove form from screen
 function hideForm() {
   const element = document.getElementById("dino-compare");
   element.classList.add("fade-out");
@@ -129,4 +164,33 @@ function validateForm() {
   return validName && validHeight && validWeight;
 }
 
-// On button click, prepare and display infographic
+function getGridTile(species, imageUrl, fact, name) {
+  let gridTileDiv = document.createElement("div");
+  gridTileDiv.className = "grid-item";
+
+  // add species
+  let speciesDiv = document.createElement("h3");
+  speciesDiv.innerText = species;
+  gridTileDiv.appendChild(speciesDiv);
+
+  if (species === "Human") {
+    let nameDiv = document.createElement("h4");
+    nameDiv.innerText = name;
+    gridTileDiv.appendChild(nameDiv);
+  }
+
+  // add image
+  let imageDiv = document.createElement("img");
+  imageDiv.src = imageUrl;
+  gridTileDiv.appendChild(imageDiv);
+
+  // add fact
+  if (fact) {
+    // for humans, facts are not necessary
+    let factDiv = document.createElement("p");
+    factDiv.innerText = fact;
+    gridTileDiv.appendChild(factDiv);
+  }
+
+  return gridTileDiv;
+}
