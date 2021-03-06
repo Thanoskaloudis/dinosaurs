@@ -203,6 +203,19 @@ select {
     cursor: pointer;
 }
 
+#tryAgainBtn {
+    color: #efefefe0;
+    background: #34343494;
+    border-radius: 1vh;
+    border: none;
+    box-shadow: 2px 3px 3px #4141414d;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+    margin: auto;
+    display: none;
+}
+
 /* Footer */
 .fine-print {
     display: block;

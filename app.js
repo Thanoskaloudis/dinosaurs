@@ -66,11 +66,14 @@ function compare() {
     compareDiet(human.diet, dino.diet);
   });
 
-  isValidForm && hideForm();
-
-  setTimeout(() => {
-    createTiles(dinosArray, human);
-  }, 600);
+  if (isValidForm) {
+    hideForm();
+    setTimeout(() => {
+      createTiles(dinosArray, human);
+      const element = document.getElementById("tryAgainBtn");
+      element.style.display = "block";
+    }, 600);
+  }
 }
 
 function createTiles(dinosArray, human) {
@@ -180,14 +183,8 @@ function getGridTile(species, imageUrl, fact, name) {
 
   // add species
   let speciesDiv = document.createElement("h3");
-  speciesDiv.innerText = species;
+  speciesDiv.innerText = species === "Human" ? name : species;
   gridTileDiv.appendChild(speciesDiv);
-
-  if (species === "Human") {
-    let nameDiv = document.createElement("h4");
-    nameDiv.innerText = name;
-    gridTileDiv.appendChild(nameDiv);
-  }
 
   // add image
   let imageDiv = document.createElement("img");

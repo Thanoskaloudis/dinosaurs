@@ -10,6 +10,7 @@
     <!-- Normalize browser styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
     <link href="app.css" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
     <!-- Link to app.js with defer till HTML render -->
     <script defer src="app.js"></script>
 </head>
@@ -40,6 +41,7 @@
     </form>
     <!-- .grid to attach tiles to -->
     <main id="grid"></main>
+    <button id="tryAgainBtn" class="try-again" onClick="window.location.reload()">Try Again</button>
     <footer>
         <!-- Include information source -->
         <p class="fine-print">Data Sourced from <a href="https://www.wikipedia.org/">Wikipedia.org</a>, all numbers are approximations.</p>
